@@ -1,0 +1,22 @@
+.list {
+  background-color: pink;
+  padding: 5px 10px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+
+  .list-title {
+    margin: 5px 0px;
+  }
+
+  .list-card-container {
+    flex: 1;
+    min-height: 200px;
+    margin: 5px 0px;
+    display: flex;
+    background-color: rgb(255, 215, 222);
+    flex-direction: column;
+    border-radius: 2.5px;
+  }
+}
