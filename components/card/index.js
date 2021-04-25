@@ -1,7 +1,11 @@
 import styles from './style.module.scss';
 
-function Card({ children }) {
-  return <div className={styles['card']}>{children}</div>;
+function Card({ elementRef, children, ...props }) {
+  return (
+    <div ref={elementRef} className={styles['card']} {...props}>
+      {children}
+    </div>
+  );
 }
 
 function CardTitle({ children }) {
