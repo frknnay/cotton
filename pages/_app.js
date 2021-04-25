@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Footer } from '@components/footer';
 import '../styles/globals.css';
+import { DragDropProvider } from 'context/drag-drop';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -10,7 +11,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <main className="main">
-        <Component {...pageProps} />
+        <DragDropProvider>
+          <Component {...pageProps} />
+        </DragDropProvider>
       </main>
 
       <Footer />
