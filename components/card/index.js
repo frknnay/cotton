@@ -1,10 +1,15 @@
+import { Draggable } from '@components/draggable';
 import styles from './style.module.scss';
 
-function Card({ elementRef, children, ...props }) {
+function Card({ children }) {
   return (
-    <div ref={elementRef} className={styles['card']} {...props}>
-      {children}
-    </div>
+    <Draggable>
+      {(provied) => (
+        <div className={styles['card']} {...provied.draggableProps}>
+          {children}
+        </div>
+      )}
+    </Draggable>
   );
 }
 
