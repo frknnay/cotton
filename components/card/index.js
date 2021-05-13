@@ -1,11 +1,15 @@
-import { Draggable } from '@components/draggable';
+import { Draggable } from 'context/drag-drop/components/draggable';
 import styles from './style.module.scss';
 
 function Card({ children }) {
   return (
     <Draggable>
       {(provied) => (
-        <div className={styles['card']} {...provied.draggableProps}>
+        <div
+          className={styles['card']}
+          {...provied.draggableProps}
+          ref={provied.ref}
+        >
           {children}
         </div>
       )}

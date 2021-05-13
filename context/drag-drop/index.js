@@ -1,43 +1,22 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 
 const DragDropContext = React.createContext();
 
-let currentNode;
-let nodeOffsetX;
-let nodeOffsetY;
-
 function DragDropProvider({ children }) {
-  const beginDrag = useCallback((e) => {
-    currentNode = e.currentTarget;
-    currentNode.style.pointerEvents = 'none';
-    currentNode.style.userSelect = 'none';
-    nodeOffsetX = e.nativeEvent.offsetX + 5;
-    nodeOffsetY = e.nativeEvent.offsetY + 5;
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
-  }, []);
+  const [isDragging, setIsDragging] = useState(false);
+  const draggingElement = useRef(null);
 
-  const onMouseMove = useCallback((e) => {
-    Object.assign(currentNode.style, {
-      position: 'fixed',
-      width: `${e.currentTarget.offsetWidth}px`,
-      height: `${e.currentTarget.offsetHeight}px`,
-      left: `${e.pageX - nodeOffsetX}px`,
-      top: `${e.pageY - nodeOffsetY}px`,
-      backgroundColor: 'pink'
-    });
-  }, []);
+  const handleDragBegin = (_element) => {
+    draggingElement.current = _element;
+    setIsDragging(true);
+  };
 
-  const onMouseUp = useCallback(() => {
-    currentNode.style.pointerEvents = 'inherit';
-    currentNode = null;
-    nodeOffsetX = null;
-    nodeOffsetY = null;
-    window.removeEventListener('mousemove', onMouseMove);
-    window.removeEventListener('mouseup', onMouseUp);
-  }, []);
+  const handleDragEnd = () => {
+    draggingElement.current = null;
+    setIsDragging(false);
+  };
 
-  const value = { beginDrag };
+  const value = { isDragging, draggingElement, handleDragBegin, handleDragEnd };
 
   return (
     <DragDropContext.Provider value={value}>
