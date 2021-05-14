@@ -1,3 +1,3 @@
 # Cotton
 
-Description will be added soon.
+A trello clone that is being written with next.js.
