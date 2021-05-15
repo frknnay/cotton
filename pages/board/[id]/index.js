@@ -7,31 +7,26 @@ export default function Board() {
   const { id: boardId } = router.query;
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
       <List>
         <List.Title>List Title</List.Title>
-        <List.CardContainer>
-          <Card>
-            <Card.Title>Decription title example.</Card.Title>
-          </Card>
-          <Card>
-            <Card.Title>Decription title example.</Card.Title>
-          </Card>
-          <Card>
-            <Card.Title>Decription title example.</Card.Title>
-          </Card>
-          <Card>
-            <Card.Title>Decription title example.</Card.Title>
-          </Card>
-          <Card>
-            <Card.Title>Decription title example.</Card.Title>
-          </Card>
-          <Card>
-            <Card.Title>Decription title example.</Card.Title>
-          </Card>
-          <Card>
-            <Card.Title>Decription title example.</Card.Title>
-          </Card>
+        <List.CardContainer listId={'list-1'}>
+          {[...Array(6)].map((a, i) => (
+            <Card key={i}>
+              <Card.Title>Item No: {i}</Card.Title>
+            </Card>
+          ))}
+        </List.CardContainer>
+      </List>
+      <div style={{ width: 50 }}></div>
+      <List>
+        <List.Title>List Title</List.Title>
+        <List.CardContainer listId={'list-2'}>
+          {[...Array(6)].map((a, i) => (
+            <Card key={i}>
+              <Card.Title>Item No: {i}</Card.Title>
+            </Card>
+          ))}
         </List.CardContainer>
       </List>
     </div>
