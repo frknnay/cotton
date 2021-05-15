@@ -1,3 +1,4 @@
+import { Droppable } from 'context/drag-drop/components/droppable';
 import styles from './style.module.scss';
 
 function List({ children }) {
@@ -8,8 +9,20 @@ function ListTitle({ children }) {
   return <div className={styles['list-title']}>{children}</div>;
 }
 
-function ListCardContainer({ children }) {
-  return <div className={styles['list-card-container']}>{children}</div>;
+function ListCardContainer({ listId, children }) {
+  return (
+    <Droppable>
+      {(provied) => (
+        <div
+          className={styles['list-card-container']}
+          {...provied.droppableProps}
+          data-deneme={listId}
+        >
+          {children}
+        </div>
+      )}
+    </Droppable>
+  );
 }
 
 List.Title = ListTitle;
