@@ -1,11 +1,14 @@
+import { useDragDrop } from 'context/drag-drop';
 import { useCallback, useMemo, useRef } from 'react';
 
 function Droppable({ children }) {
   const elementRef = useRef(null);
 
+  const { draggingElement } = useDragDrop();
+
   const dropItem = useCallback((e) => {
     const droppable = e.currentTarget;
-    console.log(droppable.dataset.deneme);
+    droppable.appendChild(draggingElement.current);
   });
 
   const droppableProps = {
